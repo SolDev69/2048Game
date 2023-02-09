@@ -53,7 +53,7 @@ public class Panel2048 extends JPanel implements KeyListener {
     		}
     	}
 //	    }
-    	Logger.log(String.valueOf(boxes));
+    	//Logger.log(boxes.toString());
     	repaint();
     }
 	public void keyTyped(KeyEvent e) {
