@@ -2,14 +2,14 @@ import java.awt.*;
 import java.io.FileWriter;
 
 public class Box extends Rectangle {
-	int width, height, num, x, y;
+	int num;
 
     Box(int x, int y, int width, int height, int num) {
-        this.width = width; 
-        this.height = height; 
+        super.width = width; 
+        super.height = height; 
         this.num = num; 
-        this.x = x; 
-        this.y = y;
+        super.x = x; 
+        super.y = y;
         Logger.log(Integer.toString(x) + " x");
         Logger.log(Integer.toString(this.x) + " this.x");
     }
