@@ -17,13 +17,13 @@ public class Box extends Rectangle {
     public void draw(Graphics g, Component c) {
         // Logger.log(Integer.toString(x) + " x");
         
-        try {
-            FileWriter fw = new FileWriter("./log.txt", true);
-            fw.write(Integer.toString(this.x) + " this.x\n");
-            fw.write(Integer.toString(this.y) + " this.y\n");
-            fw.write("\n");
-            fw.close();
-        } catch (Exception e) {}
+        // try {
+        //     FileWriter fw = new FileWriter("./log.txt", true);
+        //     fw.write(Integer.toString(this.x) + " this.x\n");
+        //     fw.write(Integer.toString(this.y) + " this.y\n");
+        //     fw.write("\n");
+        //     fw.close();
+        // } catch (Exception e) {}
         Logger.log(Integer.toString(this.x) + " this.x");
         Logger.log(Integer.toString(this.y) + " this.y");
         Logger.log("");

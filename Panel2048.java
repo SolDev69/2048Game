@@ -45,8 +45,10 @@ public class Panel2048 extends JPanel implements KeyListener {
     			if (i0 != i1) {
     				if (boxes.get(i0).num == boxes.get(i1).num) {
 		    			if (boxes.get(i0).x == boxes.get(i1).x) {
-		    				boxes.get(i0).num++; // Check if two numbers are equal
-		    				boxes.remove(i1);
+		    				if(boxes.get(i0).y == boxes.get(i1).y) {
+			    				boxes.get(i0).num++; // Check if two numbers are equal
+			    				boxes.remove(i1);
+			    			}
 		    			}
 		    		} 
 	    		}
