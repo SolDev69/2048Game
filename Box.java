@@ -32,6 +32,9 @@ public class Box extends Rectangle {
             case 2:
                 g.setColor(Color.YELLOW);
                 break;
+            case 4:
+                g.setColor(Color.BLACK);
+                break;
         }
     	g.fillRect(x, y, width, height);
     }
