@@ -103,8 +103,14 @@ public class Panel2048 extends JPanel implements KeyListener {
     	}
     	if (e.getKeyCode() == KeyEvent.VK_UP) {
     		for (Box b : boxes) {
-    			while (b.y > 0)
-    				b.y -= 100;
+    			while (b.y > 0) {
+					if (doesBoxExistAt(b.x, b.y - 100) && (getBoxAt(b.x, b.y - 100).num == b.num)) {
+    					b.y -= 100;
+    				} else if (!doesBoxExistAt(b.x, b.y - 100)) {
+    					b.y -= 100;
+    				}
+				}
+    				
     			//System.out.println("!");
     		}
     	}
