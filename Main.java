@@ -19,7 +19,7 @@ public class Main {
         JOptionPane jOptionPane = new JOptionPane("");
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
-        frame.setSize(width, height);
+        frame.setSize(panel.width, panel.height);
         frame.setResizable(true);
 	}
 

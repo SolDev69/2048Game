@@ -84,7 +84,7 @@ public class Panel2048 extends JPanel implements KeyListener {
     public void keyPressed(KeyEvent e) {
     	if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
     		for (Box b : boxes) {
-    			while (b.x < (this.width - b.width)) {
+    			while (b.x < 100*(this.width - b.width)%100) {
     				if (doesBoxExistAt(b.x + 100, b.y) && (getBoxAt(b.x + 100, b.y).num == b.num)) {
 						if (doesBoxExistAt(b.x+100, b.y)) {
 							b.x+=100;
@@ -127,8 +127,13 @@ public class Panel2048 extends JPanel implements KeyListener {
     	}
     	if (e.getKeyCode() == KeyEvent.VK_DOWN) {
     		for (Box b : boxes) {
-    			while (b.y < (this.height - b.height))
-    				b.y += 100;
+    			while (b.y < (this.height - b.height)) {
+					if (doesBoxExistAt(b.x, b.y + 100) && (getBoxAt(b.x, b.y + 100).num == b.num)) {
+    					b.y += 100;
+    				} else if (!doesBoxExistAt(b.x, b.y + 100)) {
+    					b.y += 100;
+    				}
+				}
     			//System.out.println("!");
     		}
     	} 
