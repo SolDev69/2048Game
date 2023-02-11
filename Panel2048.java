@@ -38,26 +38,10 @@ public class Panel2048 extends JPanel implements KeyListener {
         for (Box b : boxes)
             b.draw(g, this);
     }
-    public void update() {
-//    	for (Box b : boxes) {
-    	for(int i0 = 0; i0 < boxes.toArray().length; i0++) {
-    		for(int i1 = 0; i1 < boxes.toArray().length; i1++) {
-    			if (i0 != i1) {
-    				if (boxes.get(i0).num == boxes.get(i1).num) {
-		    			if (boxes.get(i0).x == boxes.get(i1).x) {
-		    				if(boxes.get(i0).y == boxes.get(i1).y) {
-			    				boxes.get(i0).num += 2; // Check if two numbers are equal
-			    				boxes.remove(i1);
-			    			}
-		    			}
-		    		} 
-	    		}
-    		}
-    	}
-//	    }
-    	//Logger.log(boxes.toString());
-    	repaint();
-    }
+	public void update() {
+		repaint();
+	}
+	
 	public void keyTyped(KeyEvent e) {
 
     }
@@ -81,23 +65,50 @@ public class Panel2048 extends JPanel implements KeyListener {
     			return true;
     	return false;
     }
+	public void merge() {
+		for(int i0 = 0; i0 < boxes.toArray().length; i0++) {
+			for(int i1 = 0; i1 < boxes.toArray().length; i1++) {
+				if (i0 != i1) {
+					if (boxes.get(i0).num == boxes.get(i1).num) {
+						if (boxes.get(i0).x == boxes.get(i1).x) {
+							if(boxes.get(i0).y == boxes.get(i1).y) {
+								boxes.get(i0).num += 2; // Check if two numbers are equal
+								boxes.remove(i1);
+							}
+						}
+					} 
+				}
+			}
+		}
+	}
     public void keyPressed(KeyEvent e) {
     	if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
     		for (Box b : boxes) {
-    			while (b.x < (this.height - b.height)) {
+    			while (b.x < (this.width - b.width)) {
     				if (doesBoxExistAt(b.x + 100, b.y) && (getBoxAt(b.x + 100, b.y).num == b.num)) {
-    					b.x += 100;
+						if (doesBoxExistAt(b.x+100, b.y)) {
+							b.x+=100;
+							this.merge();
+						}
+    					
     				} else if (!doesBoxExistAt(b.x+100, b.y)) {
     					b.x += 100;
-    				}
+    				} 
+					//else if (b.x)
     			}
     			//System.out.println("!");
     		}
     	}    	
     	if (e.getKeyCode() == KeyEvent.VK_LEFT) {
     		for (Box b : boxes) {
-    			while (b.x > 0)
-    				b.x -= 100;
+    			while (b.x > 0) {
+    				if (doesBoxExistAt(b.x - 100, b.y) && (getBoxAt(b.x - 100, b.y).num == b.num)) {
+    					b.x -= 100;
+						this.merge();
+    				} else if (!doesBoxExistAt(b.x-100, b.y)) {
+    					b.x -= 100;
+    				} else if (b.x == 100) break;
+    			}
     			//System.out.println("!");
     		}
     	}
@@ -108,7 +119,7 @@ public class Panel2048 extends JPanel implements KeyListener {
     					b.y -= 100;
     				} else if (!doesBoxExistAt(b.x, b.y - 100)) {
     					b.y -= 100;
-    				}
+    				} else if (b.y == 100) break;
 				}
     				
     			//System.out.println("!");
